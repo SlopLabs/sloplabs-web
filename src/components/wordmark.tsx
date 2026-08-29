@@ -1,0 +1,25 @@
+/** Path data copied verbatim from the slopos repo's assets/logo-on-dark.svg. */
+export function SlopOsMark({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 17 18"
+      className={className}
+      shapeRendering="crispEdges"
+      role="img"
+      aria-label="SlopOS"
+    >
+      <path
+        fill="#13351F"
+        d="M1 1h14v1h-14zM1 2h1v10h-1zM14 2h1v11h-1zM3 3h10v1h-10zM3 4h2v3h-2zM7 4h2v4h-2zM11 4h2v3h-2zM5 6h2v2h-2zM9 6h2v2h-2zM3 7h1v3h-1zM12 7h1v3h-1zM4 8h1v2h-1zM11 8h1v2h-1zM5 9h6v1h-6zM2 11h12v1h-12zM3 12h11v1h-11zM15 12h2v1h-2zM3 13h1v4h-1zM5 13h1v1h-1zM7 13h1v1h-1zM9 13h1v1h-1zM11 13h1v1h-1zM13 13h1v1h-1zM16 13h1v4h-1zM4 16h12v1h-12z"
+      />
+      <path
+        fill="#FAFAEB"
+        d="M2 2h12v1h-12zM2 3h1v8h-1zM13 3h1v8h-1zM3 10h10v1h-10zM4 13h1v2h-1zM6 13h1v2h-1zM8 13h1v2h-1zM10 13h1v2h-1zM12 13h1v2h-1zM14 13h2v2h-2zM5 14h1v1h-1zM7 14h1v1h-1zM9 14h1v1h-1zM11 14h1v1h-1zM13 14h1v1h-1z"
+      />
+      <path
+        fill="#8EE451"
+        d="M5 4h2v2h-2zM9 4h2v2h-2zM4 7h1v1h-1zM11 7h1v1h-1zM5 8h6v1h-6zM4 15h12v1h-12z"
+      />
+    </svg>
+  );
+}

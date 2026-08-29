@@ -1,29 +1,38 @@
-# Create T3 App
+# sloplabs-web
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+The landing page for [SlopLabs](https://github.com/SlopLabs). Next.js 15, TypeScript,
+Tailwind CSS v4.
 
-## What's next? How do I make an app with this?
+## Development
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+```bash
+npm install
+npm run dev          # http://localhost:3000
+```
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+Checks:
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+```bash
+npm run check        # lint + typecheck
+npm run format:check
+npm run build
+```
 
-## Learn More
+## Design notes
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+The palette comes from the SlopOS brand assets (`assets/logo-on-dark.svg` in the slopos
+repo): `#8EE451` phosphor green on a cool near-black. The site is dark only, matching
+the OS and the docs site. Tokens live in `src/styles/globals.css`.
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+Type is Geist and Geist Mono through `next/font`, the same pairing the docs site uses,
+so the two properties read as one family.
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+Photography in `public/images/` is cropped from `assets/hardware.jpg` in the slopos
+repo. That is a real photo of SlopOS running on a Lenovo laptop, not a mockup.
 
-## How do I deploy this?
+Every number on the page traces back to the slopos README. If you change a figure
+there, change it here.
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+## License
+
+See `LISENCE`.

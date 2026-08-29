@@ -1,28 +1,66 @@
 @import "tailwindcss";
 
+/*
+  Green is lifted from the SlopOS brand assets (assets/logo-on-dark.svg in the
+  slopos repo). The neutral base is deliberately cooler than the green-tinted
+  base the docs site uses, so the lab does not look like the project.
+*/
+
 @theme {
-  --font-sans: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-display: var(--font-fraunces), ui-serif, Georgia, "Times New Roman",
-    serif;
+  --color-canvas: #08090a;
+  --color-surface: #0e1011;
+  --color-surface-2: #15181a;
+
+  --color-line-faint: #191d1f;
+  --color-line: #262c2e;
+  --color-line-strong: #39413f;
+
+  --color-ink: #e9ece9;
+  --color-ink-dim: #a6afab;
+  --color-ink-faint: #838d89;
+
+  --color-slop: #8ee451;
+  --color-slop-bright: #a6ed74;
+  --color-slop-wash: rgba(142, 228, 81, 0.09);
+  --color-slop-line: rgba(142, 228, 81, 0.28);
+
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", menlo, monospace;
+
+  --radius-panel: 4px;
 }
 
-@keyframes drift {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(0, 14px, 0);
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scrollbar-gutter: stable;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
-@keyframes glow {
-  0%,
-  100% {
-    opacity: 0.35;
-  }
-  50% {
-    opacity: 0.7;
-  }
+body {
+  min-height: 100dvh;
+  overflow-x: clip;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-slop);
+  color: var(--color-canvas);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-slop);
+  outline-offset: 2px;
+  border-radius: 2px;
 }

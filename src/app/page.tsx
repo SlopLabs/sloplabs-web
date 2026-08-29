@@ -1,242 +1,407 @@
 import Image from "next/image";
 import Link from "next/link";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  GithubLogo,
+} from "@phosphor-icons/react/ssr";
 
-const projects = [
+import { HeroItem, HeroStagger, Reveal } from "@/components/reveal";
+import { SlopOsMark } from "@/components/wordmark";
+
+const org = "https://github.com/SlopLabs";
+const sloposRepo = "https://github.com/SlopLabs/slopos";
+const sloposDocs = "https://slopos.sloplabs.net";
+const slopccRepo = "https://github.com/SlopLabs/slopcc";
+
+const method = [
   {
-    name: "SlopOS",
-    logo: "/slopos-logo.png",
-    summary:
-      "A complete operating system with a Rust kernel built entirely by AI. From bootloader to userspace, every line of code was generated and validated through AI-driven development.",
-    href: "https://slopos.sloplabs.net",
-    github: "https://github.com/SlopLabs/slopos",
-    status: "Active",
-    tags: ["OS", "Kernel", "Rust", "AI-built"],
+    key: "A human decides",
+    body: "A person picks the problem, argues about the architecture, and rejects the approach when it is wrong. Nobody here hand-writes the implementation.",
   },
+  {
+    key: "The build checks the claim",
+    body: "An agent will tell you the code is correct. That claim is worth nothing on its own, so each project carries gates that test the assertion instead of the intent.",
+  },
+  {
+    key: "The repos stay public",
+    body: "Every repository is public from the first commit, including the parts that do not work yet, and each one documents the edges you will hit.",
+  },
+];
+
+const priorArt = [
+  { name: "Asterinas", href: "https://github.com/asterinas/asterinas" },
+  { name: "Linux", href: "https://kernel.org" },
+  { name: "Redox", href: "https://www.redox-os.org" },
+  { name: "seL4", href: "https://sel4.systems" },
+  { name: "Verus", href: "https://github.com/verus-lang/verus" },
 ];
 
 export default function HomePage() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top,_#1c2140,_#0f1326_45%,_#090b16_100%)] text-slate-100">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute top-20 -left-24 h-72 w-72 animate-[glow_10s_ease-in-out_infinite] rounded-full bg-[#5c3a2d]/60 blur-3xl"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute top-0 -right-32 h-96 w-96 animate-[drift_14s_ease-in-out_infinite] rounded-full bg-[#1c3f3a]/60 blur-3xl"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute bottom-0 left-1/3 h-80 w-80 animate-[glow_12s_ease-in-out_infinite] rounded-full bg-[#4d3f12]/50 blur-3xl"
-      />
-
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-24 px-6 pt-10 pb-20 sm:px-10">
-        {/* Header */}
-        <header className="flex flex-wrap items-center justify-between gap-6">
-          <p className="text-lg font-semibold tracking-wide text-white">
-            SlopLabs
-          </p>
+    <div className="bg-canvas text-ink">
+      <header className="border-line-faint bg-canvas/85 sticky top-0 z-40 h-16 border-b backdrop-blur-md">
+        <nav className="mx-auto flex h-full max-w-[1180px] items-center gap-6 px-5 sm:px-8">
           <Link
-            className="rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/20"
-            href="https://github.com/SlopLabs"
+            href="/"
+            className="text-ink font-mono text-[15px] font-semibold tracking-tight"
+          >
+            SlopLabs
+          </Link>
+
+          <div className="ml-auto hidden items-center gap-1 md:flex">
+            <a
+              href="#projects"
+              className="text-ink-dim hover:text-ink hover:bg-surface-2 rounded-panel px-3 py-1.5 font-mono text-[13px] transition-colors"
+            >
+              Projects
+            </a>
+            <a
+              href="#method"
+              className="text-ink-dim hover:text-ink hover:bg-surface-2 rounded-panel px-3 py-1.5 font-mono text-[13px] transition-colors"
+            >
+              Method
+            </a>
+          </div>
+
+          <a
+            href={org}
             target="_blank"
             rel="noreferrer"
+            className="border-line-strong text-ink hover:border-ink-faint hover:bg-surface-2 rounded-panel ml-auto inline-flex h-9 items-center gap-2 border px-3.5 font-mono text-[13px] transition-colors active:translate-y-px md:ml-0"
           >
+            <GithubLogo size={15} weight="fill" />
             GitHub
-          </Link>
-        </header>
+          </a>
+        </nav>
+      </header>
 
-        {/* Hero */}
-        <section className="flex flex-col items-center gap-8 text-center">
-          <p className="text-sm font-semibold tracking-[0.5em] text-slate-400 uppercase">
-            We build with AI
-          </p>
-          <h1 className="max-w-4xl font-[family-name:var(--font-display)] text-4xl leading-tight text-white sm:text-5xl lg:text-6xl">
-            Seeing how far AI can take real software.
-          </h1>
-          <p className="max-w-2xl text-lg text-slate-300">
-            SlopLabs is a hobby collective experimenting with AI-built systems —
-            from operating system kernels to developer tools. We build things,
-            put them out there, and see where it goes.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <a
-              className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:-translate-y-0.5 hover:bg-slate-200"
-              href="#projects"
-            >
-              What we&apos;re working on
-            </a>
-            <Link
-              className="rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/20"
-              href="https://github.com/SlopLabs"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Follow on GitHub
-            </Link>
+      <main>
+        <section className="mx-auto max-w-[1180px] px-5 pt-16 pb-20 sm:px-8 md:pt-20 md:pb-28">
+          <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-16">
+            <HeroStagger>
+              <HeroItem>
+                <h1 className="max-w-[21ch] text-[clamp(2.1rem,4.4vw,3.15rem)] leading-[1.06] font-semibold tracking-[-0.035em] text-balance">
+                  We hand hard systems problems to AI agents.
+                </h1>
+              </HeroItem>
+
+              <HeroItem>
+                <p className="text-ink-dim mt-6 max-w-[46ch] text-[17px] leading-relaxed">
+                  Then we build the gates that check what comes back. So far
+                  that has produced an operating system that boots.
+                </p>
+              </HeroItem>
+
+              <HeroItem>
+                <div className="mt-9 flex flex-wrap gap-2.5">
+                  <a
+                    href="#projects"
+                    className="bg-slop text-canvas hover:bg-slop-bright rounded-panel inline-flex h-11 items-center gap-2 px-5 font-mono text-[13.5px] font-medium whitespace-nowrap transition-colors active:translate-y-px"
+                  >
+                    See the projects
+                    <ArrowRight size={15} weight="bold" />
+                  </a>
+                  <a
+                    href={org}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="border-line-strong text-ink hover:border-ink-faint hover:bg-surface-2 rounded-panel inline-flex h-11 items-center gap-2 border px-5 font-mono text-[13.5px] font-medium whitespace-nowrap transition-colors active:translate-y-px"
+                  >
+                    <GithubLogo size={15} weight="fill" />
+                    GitHub
+                  </a>
+                </div>
+              </HeroItem>
+            </HeroStagger>
+
+            <div>
+              <div className="border-line rounded-panel overflow-hidden border shadow-[0_28px_70px_-32px_rgba(0,0,0,0.9)]">
+                <Image
+                  src="/images/slopos-laptop.jpg"
+                  alt="SlopOS running on a Lenovo laptop, with its terminal, file manager, system monitor and image viewer open on the desktop"
+                  width={1600}
+                  height={1200}
+                  priority
+                  sizes="(max-width: 1023px) 100vw, 56vw"
+                  className="block h-auto w-full"
+                />
+              </div>
+              <p className="text-ink-faint mt-3 font-mono text-xs leading-relaxed">
+                SlopOS on a real laptop, drawn by a display driver the agents
+                wrote.
+              </p>
+            </div>
           </div>
         </section>
 
-        {/* Featured Project */}
-        <section id="projects" className="flex flex-col gap-10">
-          <div className="text-center">
-            <p className="text-sm font-semibold tracking-[0.4em] text-slate-400 uppercase">
-              Current Project
-            </p>
-            <h2 className="mt-3 font-[family-name:var(--font-display)] text-3xl text-white sm:text-4xl">
-              The thing we&apos;re poking at right now.
-            </h2>
-          </div>
+        <section
+          id="method"
+          className="border-line-faint scroll-mt-20 border-t"
+        >
+          <div className="mx-auto max-w-[1180px] px-5 py-24 sm:px-8 md:py-32">
+            <Reveal>
+              <h2 className="max-w-[22ch] text-[clamp(1.75rem,3.4vw,2.5rem)] leading-[1.08] font-semibold tracking-[-0.03em] text-balance">
+                We do not trust the output either.
+              </h2>
+              <p className="text-ink-dim mt-5 max-w-[60ch] text-[16.5px] leading-relaxed">
+                Letting a model write a kernel is the easy part. The work is
+                deciding what to point it at, and proving afterwards that the
+                result holds.
+              </p>
+            </Reveal>
 
-          {projects.map((project) => (
-            <article
-              key={project.name}
-              className="overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-[0_25px_70px_-45px_rgba(15,23,42,0.8)] backdrop-blur"
-            >
-              <div className="flex flex-col lg:flex-row">
-                <div className="flex flex-1 flex-col gap-5 p-8 sm:p-10">
-                  <div className="flex flex-wrap items-center gap-3">
-                    <h3 className="font-[family-name:var(--font-display)] text-3xl text-white sm:text-4xl">
-                      {project.name}
+            <div className="divide-line-faint mt-12 divide-y">
+              {method.map((m, i) => (
+                <Reveal key={m.key} delay={i * 0.06}>
+                  <div className="grid gap-3 py-7 md:grid-cols-[240px_minmax(0,1fr)] md:gap-10">
+                    <h3 className="text-slop text-[16px] font-medium tracking-tight">
+                      {m.key}
                     </h3>
-                    <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-xs font-semibold text-emerald-300">
-                      {project.status}
+                    <p className="text-ink-dim max-w-[64ch] text-[16px] leading-relaxed">
+                      {m.body}
+                    </p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="projects"
+          className="border-line-faint scroll-mt-20 border-t"
+        >
+          <div className="mx-auto max-w-[1180px] px-5 py-24 sm:px-8 md:py-32">
+            <Reveal>
+              <h2 className="text-[clamp(1.75rem,3.4vw,2.5rem)] leading-[1.08] font-semibold tracking-[-0.03em]">
+                Two repositories
+              </h2>
+            </Reveal>
+
+            <Reveal delay={0.06}>
+              <article className="border-line rounded-panel mt-10 grid gap-8 border p-6 sm:p-9 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-center lg:gap-12">
+                <div>
+                  <div className="flex items-center gap-3">
+                    <SlopOsMark className="h-7 w-auto" />
+                    <span className="text-ink-faint font-mono text-[11.5px]">
+                      boots on real hardware
                     </span>
                   </div>
-                  <p className="max-w-xl text-lg leading-relaxed text-slate-300">
-                    {project.summary}
+
+                  <h3 className="mt-5 text-[clamp(1.4rem,2.4vw,1.85rem)] leading-[1.1] font-semibold tracking-[-0.025em] text-balance">
+                    An x86_64 operating system, from the bootloader up.
+                  </h3>
+
+                  <p className="text-ink-dim mt-4 max-w-[52ch] text-[16px] leading-relaxed">
+                    A framekernel in Rust with its own TCP stack, ACPI
+                    interpreter, display driver and compositor. One crate holds
+                    every line of{" "}
+                    <code className="text-slop font-mono text-[0.9em]">
+                      unsafe
+                    </code>
+                    , and Verus proves the invariants underneath it. The docs
+                    site explains how those gates work and what still breaks.
                   </p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-slate-200"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="mt-2 flex flex-wrap gap-3">
-                    <Link
-                      className="flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:-translate-y-0.5 hover:bg-slate-200"
-                      href={project.href}
+
+                  <div className="mt-7 flex flex-wrap gap-2.5">
+                    <a
+                      href={sloposDocs}
+                      className="bg-slop text-canvas hover:bg-slop-bright rounded-panel inline-flex h-11 items-center gap-2 px-5 font-mono text-[13.5px] font-medium whitespace-nowrap transition-colors active:translate-y-px"
+                    >
+                      Read the docs
+                      <ArrowRight size={15} weight="bold" />
+                    </a>
+                    <a
+                      href={sloposRepo}
                       target="_blank"
                       rel="noreferrer"
+                      className="border-line-strong text-ink hover:border-ink-faint hover:bg-surface-2 rounded-panel inline-flex h-11 items-center gap-2 border px-5 font-mono text-[13.5px] font-medium whitespace-nowrap transition-colors active:translate-y-px"
                     >
-                      <span>Visit project</span>
-                      <svg
-                        aria-hidden="true"
-                        className="h-4 w-4"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
-                        />
-                      </svg>
-                    </Link>
-                    <Link
-                      className="flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/20"
-                      href={project.github}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <svg
-                        aria-hidden="true"
-                        viewBox="0 0 24 24"
-                        className="h-4 w-4 fill-current"
-                      >
-                        <path d="M12 2C6.477 2 2 6.59 2 12.253c0 4.53 2.865 8.372 6.839 9.73.5.096.682-.223.682-.495 0-.245-.01-1.05-.014-1.905-2.782.624-3.369-1.224-3.369-1.224-.454-1.183-1.11-1.498-1.11-1.498-.908-.636.068-.623.068-.623 1.003.072 1.531 1.057 1.531 1.057.892 1.568 2.341 1.115 2.91.852.092-.666.35-1.115.636-1.371-2.22-.26-4.555-1.14-4.555-5.072 0-1.12.39-2.037 1.03-2.756-.103-.26-.447-1.309.098-2.73 0 0 .84-.276 2.75 1.052A9.244 9.244 0 0 1 12 7.077c.852.004 1.71.12 2.51.355 1.909-1.328 2.748-1.052 2.748-1.052.546 1.421.202 2.47.1 2.73.64.719 1.029 1.636 1.029 2.756 0 3.94-2.339 4.81-4.566 5.065.359.318.678.942.678 1.9 0 1.372-.012 2.477-.012 2.814 0 .274.18.595.688.494C19.137 20.62 22 16.783 22 12.253 22 6.59 17.523 2 12 2Z" />
-                      </svg>
-                      <span>View source</span>
-                    </Link>
+                      <GithubLogo size={15} weight="fill" />
+                      Source
+                    </a>
                   </div>
                 </div>
-                <div className="flex items-center justify-center bg-white/5 p-8 lg:w-80 lg:p-10">
+
+                <div className="border-line rounded-panel overflow-hidden border">
                   <Image
-                    src={project.logo}
-                    alt={`${project.name} logo`}
-                    width={384}
-                    height={256}
-                    className="w-full rounded-xl"
+                    src="/images/slopos-terminal.jpg"
+                    alt="The SlopOS terminal after boot, showing an ASCII banner, the build string v0.2-slop on x86_64, and a win-loss balance of 2260"
+                    width={900}
+                    height={639}
+                    sizes="(max-width: 1023px) 100vw, 52vw"
+                    className="block h-auto w-full"
                   />
                 </div>
-              </div>
-            </article>
-          ))}
-        </section>
+              </article>
+            </Reveal>
 
-        {/* Approach */}
-        <section
-          id="approach"
-          className="grid gap-10 rounded-3xl border border-white/10 bg-white/5 p-8 shadow-[0_30px_80px_-55px_rgba(15,23,42,0.8)] backdrop-blur sm:p-10 lg:grid-cols-[1.1fr_0.9fr]"
-        >
-          <div className="flex flex-col gap-4">
-            <p className="text-sm font-semibold tracking-[0.4em] text-slate-400 uppercase">
-              How we work
-            </p>
-            <h3 className="font-[family-name:var(--font-display)] text-3xl text-white">
-              Let AI do the heavy lifting, see what happens.
-            </h3>
-            <p className="text-slate-300">
-              This is a hobby — we&apos;re curious how far AI can go when you
-              point it at hard problems and get out of the way. Everything we
-              make ends up on GitHub.
-            </p>
-          </div>
-          <div className="grid gap-4 text-sm text-slate-300">
-            {[
-              {
-                title: "AI writes the code",
-                detail:
-                  "We give direction, AI does the implementation. We review, poke at it, and iterate.",
-              },
-              {
-                title: "Everything on GitHub",
-                detail:
-                  "All code is public. If something interests you, fork it, open an issue, or just poke around.",
-              },
-              {
-                title: "No grand plan",
-                detail:
-                  "We pick problems that seem fun, start building, and figure it out as we go.",
-              },
-            ].map((item) => (
-              <div
-                key={item.title}
-                className="rounded-2xl border border-white/10 bg-white/5 p-5"
+            <Reveal delay={0.1}>
+              <a
+                href={slopccRepo}
+                target="_blank"
+                rel="noreferrer"
+                className="border-line hover:border-slop-line hover:bg-slop-wash group rounded-panel mt-4 grid gap-6 border p-6 transition-colors sm:p-9 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)_auto] md:items-center md:gap-10"
               >
-                <p className="font-semibold text-white">{item.title}</p>
-                <p className="mt-1.5 text-slate-300">{item.detail}</p>
-              </div>
-            ))}
+                <div>
+                  <h3 className="font-mono text-[19px] font-semibold tracking-tight">
+                    slopcc
+                  </h3>
+                  <p className="text-ink-faint mt-2 font-mono text-[11.5px]">
+                    scaffolding, lexer next
+                  </p>
+                </div>
+
+                <p className="text-ink-dim text-[15.5px] leading-relaxed">
+                  A C11 compiler in Rust: full preprocessor, GCC-compatible CLI,
+                  LLVM IR out the back via inkwell. The goal is compiling the
+                  Linux kernel, and eventually running the compiler on SlopOS
+                  itself.
+                </p>
+
+                <ArrowUpRight
+                  size={20}
+                  className="text-ink-faint group-hover:text-slop transition-colors"
+                  aria-hidden="true"
+                />
+              </a>
+            </Reveal>
           </div>
         </section>
 
-        {/* Footer */}
-        <footer className="flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-slate-400">
-          <p>&copy; {new Date().getFullYear()} SlopLabs</p>
-          <Link
-            className="inline-flex items-center gap-2 font-semibold text-slate-200 transition hover:text-white"
-            href="https://github.com/SlopLabs"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 24 24"
-              className="h-4 w-4 fill-current"
-            >
-              <path d="M12 2C6.477 2 2 6.59 2 12.253c0 4.53 2.865 8.372 6.839 9.73.5.096.682-.223.682-.495 0-.245-.01-1.05-.014-1.905-2.782.624-3.369-1.224-3.369-1.224-.454-1.183-1.11-1.498-1.11-1.498-.908-.636.068-.623.068-.623 1.003.072 1.531 1.057 1.531 1.057.892 1.568 2.341 1.115 2.91.852.092-.666.35-1.115.636-1.371-2.22-.26-4.555-1.14-4.555-5.072 0-1.12.39-2.037 1.03-2.756-.103-.26-.447-1.309.098-2.73 0 0 .84-.276 2.75 1.052A9.244 9.244 0 0 1 12 7.077c.852.004 1.71.12 2.51.355 1.909-1.328 2.748-1.052 2.748-1.052.546 1.421.202 2.47.1 2.73.64.719 1.029 1.636 1.029 2.756 0 3.94-2.339 4.81-4.566 5.065.359.318.678.942.678 1.9 0 1.372-.012 2.477-.012 2.814 0 .274.18.595.688.494C19.137 20.62 22 16.783 22 12.253 22 6.59 17.523 2 12 2Z" />
-            </svg>
-            <span>SlopLabs on GitHub</span>
-          </Link>
-        </footer>
-      </div>
-    </main>
+        <section className="border-line-faint border-t">
+          <div className="mx-auto max-w-[1180px] px-5 py-24 sm:px-8 md:py-32">
+            <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-20">
+              <Reveal>
+                <h2 className="max-w-[20ch] text-[clamp(1.75rem,3.4vw,2.5rem)] leading-[1.08] font-semibold tracking-[-0.03em] text-balance">
+                  The agents invented none of this.
+                </h2>
+              </Reveal>
+
+              <Reveal delay={0.06}>
+                <p className="text-ink-dim max-w-[58ch] text-[16.5px] leading-relaxed">
+                  Nobody thinks up demand paging on a beach. Paging, preemption,
+                  wake races, TCP over a hostile network: all of it was solved
+                  decades ago by people who wrote it down and gave it away. The
+                  models learned kernels by reading their work, so the source
+                  credits them at length.
+                </p>
+
+                <p className="text-ink-dim mt-4 max-w-[58ch] text-[16.5px] leading-relaxed">
+                  We studied and reimplemented. We did not copy. The ideas are
+                  theirs; only the slop is ours.
+                </p>
+
+                <ul className="mt-8 flex flex-wrap gap-2">
+                  {priorArt.map((p) => (
+                    <li key={p.name}>
+                      <a
+                        href={p.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="border-line text-ink-dim hover:border-slop-line hover:text-slop rounded-panel inline-flex h-9 items-center border px-3.5 font-mono text-[13px] transition-colors"
+                      >
+                        {p.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-[1180px] px-5 pb-24 sm:px-8 md:pb-32">
+          <Reveal>
+            <div className="border-line bg-surface rounded-panel border px-6 py-14 text-center sm:px-10 md:py-16">
+              <h2 className="mx-auto max-w-[20ch] text-[clamp(1.6rem,3.2vw,2.35rem)] leading-[1.1] font-semibold tracking-[-0.03em] text-balance">
+                The name is a warning.
+              </h2>
+              <p className="text-ink-dim mx-auto mt-5 max-w-[54ch] text-[16px] leading-relaxed">
+                This is a hobby, not a company. Nothing here is production
+                software, and the repositories say so in more detail than a
+                landing page can.
+              </p>
+              <div className="mt-9 flex flex-wrap justify-center gap-2.5">
+                <a
+                  href={org}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="bg-slop text-canvas hover:bg-slop-bright rounded-panel inline-flex h-11 items-center gap-2 px-5 font-mono text-[13.5px] font-medium whitespace-nowrap transition-colors active:translate-y-px"
+                >
+                  <GithubLogo size={15} weight="fill" />
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </Reveal>
+        </section>
+      </main>
+
+      <footer className="border-line-faint border-t">
+        <div className="mx-auto max-w-[1180px] px-5 pt-14 pb-10 sm:px-8">
+          <div className="grid gap-10 md:grid-cols-[minmax(0,1.5fr)_repeat(2,minmax(0,1fr))] md:gap-8">
+            <div>
+              <p className="font-mono text-[15px] font-semibold tracking-tight">
+                SlopLabs
+              </p>
+              <p className="text-ink-faint mt-4 max-w-[36ch] text-[14px] leading-relaxed">
+                Three kernel wizards shipwrecked on the island of Sloptopia,
+                armed with Rust, mass token consumption, and zero fear of{" "}
+                <code className="font-mono text-[0.9em]">unsafe</code>.
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-ink-faint mb-3 font-mono text-[11px] tracking-[0.12em] uppercase">
+                SlopOS
+              </h2>
+              <a
+                href={sloposDocs}
+                className="text-ink-dim hover:text-slop block py-1.5 text-[14px] transition-colors"
+              >
+                Documentation
+              </a>
+              <a
+                href={sloposRepo}
+                target="_blank"
+                rel="noreferrer"
+                className="text-ink-dim hover:text-slop block py-1.5 text-[14px] transition-colors"
+              >
+                Source
+              </a>
+            </div>
+
+            <div>
+              <h2 className="text-ink-faint mb-3 font-mono text-[11px] tracking-[0.12em] uppercase">
+                Lab
+              </h2>
+              <a
+                href={org}
+                target="_blank"
+                rel="noreferrer"
+                className="text-ink-dim hover:text-slop block py-1.5 text-[14px] transition-colors"
+              >
+                All repositories
+              </a>
+              <a
+                href={slopccRepo}
+                target="_blank"
+                rel="noreferrer"
+                className="text-ink-dim hover:text-slop block py-1.5 text-[14px] transition-colors"
+              >
+                slopcc
+              </a>
+            </div>
+          </div>
+
+          <div className="border-line-faint text-ink-faint mt-12 flex flex-wrap justify-between gap-3 border-t pt-6 font-mono text-[12px]">
+            <p>&copy; {new Date().getFullYear()} SlopLabs</p>
+            <p>SlopOS is GPL-3.0-only. slopcc is Apache-2.0.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
   );
 }
