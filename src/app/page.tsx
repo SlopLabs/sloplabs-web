@@ -21,11 +21,11 @@ const method = [
   },
   {
     key: "The build checks the claim",
-    body: "Confidence is free for a model to produce, so we never take it as evidence. Each project ships gates that try to falsify the code, and they run before anyone reads a diff.",
+    body: "Confidence is free for a model to produce, so we do not take it as evidence. SlopOS answers to Verus proofs, Miri and a few thousand tests that boot under QEMU on every change.",
   },
   {
     key: "The repos stay public",
-    body: "Every repository is public from the first commit, including the parts that do not work yet, and each one documents the edges you will hit.",
+    body: "Every repository is public from the first commit, including the parts that do not work yet. SlopOS keeps a written list of its own known limitations.",
   },
 ];
 
@@ -281,17 +281,10 @@ export default function HomePage() {
 
               <Reveal delay={0.06}>
                 <p className="text-ink-dim max-w-[58ch] text-[16.5px] leading-relaxed">
-                  A model can only recombine what it has read, and what it read
-                  here was decades of published kernel work. Demand paging, wake
-                  races and congestion control were hard problems long before
-                  our agents got a turn at them.
-                </p>
-
-                <p className="text-ink-dim mt-4 max-w-[58ch] text-[16.5px] leading-relaxed">
-                  So the interesting question is not whether AI can invent an
-                  operating system. It cannot. It is whether AI can reimplement
-                  one correctly enough to survive the gates. Each repo names its
-                  sources in full.
+                  Demand paging, wake races and TCP over a hostile network were
+                  solved decades ago by people who published the answers. The
+                  models learned kernels by reading that work, which is why
+                  SlopOS credits these projects at length in its source.
                 </p>
 
                 <ul className="mt-8 flex flex-wrap gap-2">
@@ -311,32 +304,6 @@ export default function HomePage() {
               </Reveal>
             </div>
           </div>
-        </section>
-
-        <section className="mx-auto max-w-[1180px] px-5 pb-24 sm:px-8 md:pb-32">
-          <Reveal>
-            <div className="border-line bg-surface rounded-panel border px-6 py-14 text-center sm:px-10 md:py-16">
-              <h2 className="mx-auto max-w-[20ch] text-[clamp(1.6rem,3.2vw,2.35rem)] leading-[1.1] font-semibold tracking-[-0.03em] text-balance">
-                Read the source before you trust it.
-              </h2>
-              <p className="text-ink-dim mx-auto mt-5 max-w-[54ch] text-[16px] leading-relaxed">
-                This is a hobby that runs in the open. Nothing here is
-                production software, and every repo is candid about where it
-                falls over.
-              </p>
-              <div className="mt-9 flex flex-wrap justify-center gap-2.5">
-                <a
-                  href={org}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="bg-slop text-canvas hover:bg-slop-bright rounded-panel inline-flex h-11 items-center gap-2 px-5 font-mono text-[13.5px] font-medium whitespace-nowrap transition-colors active:translate-y-px"
-                >
-                  <GithubLogo size={15} weight="fill" />
-                  GitHub
-                </a>
-              </div>
-            </div>
-          </Reveal>
         </section>
       </main>
 
