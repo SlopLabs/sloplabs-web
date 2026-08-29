@@ -21,7 +21,7 @@ const method = [
   },
   {
     key: "The build checks the claim",
-    body: "An agent will tell you the code is correct. That claim is worth nothing on its own, so each project carries gates that test the assertion instead of the intent.",
+    body: "Confidence is free for a model to produce, so we never take it as evidence. Each project ships gates that try to falsify the code, and they run before anyone reads a diff.",
   },
   {
     key: "The repos stay public",
@@ -272,25 +272,26 @@ export default function HomePage() {
 
         <section className="border-line-faint border-t">
           <div className="mx-auto max-w-[1180px] px-5 py-24 sm:px-8 md:py-32">
-            <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-20">
+            <div className="grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-end lg:gap-20">
               <Reveal>
                 <h2 className="max-w-[20ch] text-[clamp(1.75rem,3.4vw,2.5rem)] leading-[1.08] font-semibold tracking-[-0.03em] text-balance">
-                  The agents invented none of this.
+                  Standing on borrowed shoulders.
                 </h2>
               </Reveal>
 
               <Reveal delay={0.06}>
                 <p className="text-ink-dim max-w-[58ch] text-[16.5px] leading-relaxed">
-                  Nobody thinks up demand paging on a beach. Paging, preemption,
-                  wake races, TCP over a hostile network: all of it was solved
-                  decades ago by people who wrote it down and gave it away. The
-                  models learned kernels by reading their work, so the source
-                  credits them at length.
+                  A model can only recombine what it has read, and what it read
+                  here was decades of published kernel work. Demand paging, wake
+                  races and congestion control were hard problems long before
+                  our agents got a turn at them.
                 </p>
 
                 <p className="text-ink-dim mt-4 max-w-[58ch] text-[16.5px] leading-relaxed">
-                  We studied and reimplemented. We did not copy. The ideas are
-                  theirs; only the slop is ours.
+                  So the interesting question is not whether AI can invent an
+                  operating system. It cannot. It is whether AI can reimplement
+                  one correctly enough to survive the gates. Each repo names its
+                  sources in full.
                 </p>
 
                 <ul className="mt-8 flex flex-wrap gap-2">
@@ -316,12 +317,12 @@ export default function HomePage() {
           <Reveal>
             <div className="border-line bg-surface rounded-panel border px-6 py-14 text-center sm:px-10 md:py-16">
               <h2 className="mx-auto max-w-[20ch] text-[clamp(1.6rem,3.2vw,2.35rem)] leading-[1.1] font-semibold tracking-[-0.03em] text-balance">
-                The name is a warning.
+                Read the source before you trust it.
               </h2>
               <p className="text-ink-dim mx-auto mt-5 max-w-[54ch] text-[16px] leading-relaxed">
-                This is a hobby, not a company. Nothing here is production
-                software, and the repositories say so in more detail than a
-                landing page can.
+                This is a hobby that runs in the open. Nothing here is
+                production software, and every repo is candid about where it
+                falls over.
               </p>
               <div className="mt-9 flex flex-wrap justify-center gap-2.5">
                 <a
