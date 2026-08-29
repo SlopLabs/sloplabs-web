@@ -364,9 +364,8 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="border-line-faint text-ink-faint mt-12 flex flex-wrap justify-between gap-3 border-t pt-6 font-mono text-[12px]">
+          <div className="border-line-faint text-ink-faint mt-12 border-t pt-6 font-mono text-[12px]">
             <p>&copy; {new Date().getFullYear()} SlopLabs</p>
-            <p>SlopOS is GPL-3.0-only. slopcc is Apache-2.0.</p>
           </div>
         </div>
       </footer>
