@@ -7,7 +7,7 @@ import {
 } from "@phosphor-icons/react/ssr";
 
 import { HeroItem, HeroStagger, Reveal } from "@/components/reveal";
-import { SlopOsMark } from "@/components/wordmark";
+import { SlopLabsLogo, SlopOsMark } from "@/components/wordmark";
 
 const org = "https://github.com/SlopLabs";
 const sloposRepo = "https://github.com/SlopLabs/slopos";
@@ -42,11 +42,8 @@ export default function HomePage() {
     <div className="bg-canvas text-ink">
       <header className="border-line-faint bg-canvas/85 sticky top-0 z-40 h-16 border-b backdrop-blur-md">
         <nav className="mx-auto flex h-full max-w-[1180px] items-center gap-6 px-5 sm:px-8">
-          <Link
-            href="/"
-            className="text-ink font-mono text-[15px] font-semibold tracking-tight"
-          >
-            SlopLabs
+          <Link href="/" className="inline-flex items-center">
+            <SlopLabsLogo className="h-8 w-auto" />
           </Link>
 
           <div className="ml-auto hidden items-center gap-1 md:flex">
@@ -311,9 +308,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-[1180px] px-5 pt-14 pb-10 sm:px-8">
           <div className="grid gap-10 md:grid-cols-[minmax(0,1.5fr)_repeat(2,minmax(0,1fr))] md:gap-8">
             <div>
-              <p className="font-mono text-[15px] font-semibold tracking-tight">
-                SlopLabs
-              </p>
+              <SlopLabsLogo className="h-8 w-auto" />
               <p className="text-ink-faint mt-4 max-w-[36ch] text-[14px] leading-relaxed">
                 Three kernel wizards shipwrecked on the island of Sloptopia,
                 armed with Rust, mass token consumption, and zero fear of{" "}

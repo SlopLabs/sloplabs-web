@@ -11,13 +11,34 @@ export const metadata: Metadata = {
   },
   description:
     "SlopLabs hands hard systems problems to AI agents, then builds the gates that check what comes back. Home of SlopOS and slopcc. Every commit public.",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-32.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon-16.png", type: "image/png", sizes: "16x16" },
+    ],
+    apple: [{ url: "/apple-icon.png", type: "image/png", sizes: "180x180" }],
+  },
   openGraph: {
     type: "website",
     url: "https://sloplabs.net",
     siteName: "SlopLabs",
     title: "SlopLabs, hard systems problems handed to AI agents",
     description: "Home of SlopOS and slopcc. Every commit public.",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "SlopLabs",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SlopLabs, hard systems problems handed to AI agents",
+    description: "Home of SlopOS and slopcc. Every commit public.",
+    images: ["/og.png"],
   },
 };
 
