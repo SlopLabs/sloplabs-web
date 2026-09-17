@@ -6,15 +6,16 @@
 
 | Action             | Command                        |
 | ------------------ | ------------------------------ |
-| Dev server         | `npm run dev` (uses `--turbo`) |
-| Build              | `npm run build`                |
-| Lint               | `npm run lint`                 |
-| Lint + fix         | `npm run lint:fix`             |
-| Type-check         | `npm run typecheck`            |
-| Lint + types       | `npm run check`                |
-| Format check       | `npm run format:check`         |
-| Format fix         | `npm run format:write`         |
-| Production preview | `npm run preview`              |
+| Install            | `bun install`                  |
+| Dev server         | `bun run dev` (uses `--turbo`) |
+| Build              | `bun run build`                |
+| Lint               | `bun run lint`                 |
+| Lint + fix         | `bun run lint:fix`             |
+| Type-check         | `bun run typecheck`            |
+| Lint + types       | `bun run check`                |
+| Format check       | `bun run format:check`         |
+| Format fix         | `bun run format:write`         |
+| Production preview | `bun run preview`              |
 
 No test framework is configured. There are no test commands.
 
@@ -23,11 +24,11 @@ No test framework is configured. There are no test commands.
 - **Framework**: Next.js 15 (App Router) with Turbopack dev
 - **Language**: TypeScript 5.8 (strict mode, `noUncheckedIndexedAccess`)
 - **Styling**: Tailwind CSS v4 via `@tailwindcss/postcss`
-- **Fonts**: Space Grotesk (sans), Fraunces (display) — loaded via `next/font/google`
+- **Fonts**: Geist (sans), Geist Mono (mono) — loaded via `next/font/google`
 - **Env validation**: `@t3-oss/env-nextjs` + Zod (schema in `src/env.js`)
 - **Linter**: ESLint 9 flat config with `typescript-eslint` recommended + type-checked rules
 - **Formatter**: Prettier with `prettier-plugin-tailwindcss`
-- **Package manager**: npm 11 (lockfile: `bun.lock` also present)
+- **Package manager**: bun 1.4 (lockfile: `bun.lock`)
 - **Module system**: ESM (`"type": "module"` in package.json)
 
 ## Project Structure
@@ -37,15 +38,19 @@ src/
   app/
     layout.tsx          # Root layout, fonts, metadata
     page.tsx            # Landing page (single-page site)
+  components/
+    wordmark.tsx        # Inlined SlopLabs pixel lockup (SVG)
   env.js                # T3 env validation schema (Zod)
   styles/
     globals.css         # Tailwind v4 import, @theme, keyframes
 public/
   favicon.ico
+  logo/                 # Source SVG lockups
 ```
 
-This is a single-page site. All content lives in `src/app/page.tsx`.
-Projects are defined as a const array at the top of that file.
+This is a single-page site: a centered logo, one line of copy, two links and a
+footer. All content lives in `src/app/page.tsx`; the outbound links are a const
+array at the top of that file. Keep it minimalist — resist adding sections.
 
 ## Path Aliases
 
@@ -103,10 +108,11 @@ Uses the new v4 `@import "tailwindcss"` syntax in `globals.css` (not the v3 `@ta
 
 Custom theme tokens defined via `@theme` block:
 
-- `--font-sans` — Space Grotesk
-- `--font-display` — Fraunces
+- `--font-sans` — Geist
+- `--font-mono` — Geist Mono
 
-Custom keyframes: `drift`, `glow` (used for background animations).
+Custom keyframe: `rise` (one-shot entrance for the centered block, exposed as
+`--animate-rise` / `animate-rise`).
 
 PostCSS config: `@tailwindcss/postcss` plugin.
 
@@ -160,8 +166,8 @@ import { env } from "@/env";
 
 Before committing, ensure:
 
-1. `npm run check` passes (lint + typecheck)
-2. `npm run format:check` passes (or run `format:write`)
-3. `npm run build` succeeds
+1. `bun run check` passes (lint + typecheck)
+2. `bun run format:check` passes (or run `bun run format:write`)
+3. `bun run build` succeeds
 4. No `as any`, `@ts-ignore`, or `@ts-expect-error` in code
 5. New env vars added to both `src/env.js` schema and `.env.example`

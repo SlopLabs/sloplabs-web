@@ -5,12 +5,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://sloplabs.net"),
-  title: {
-    default: "SlopLabs, hard systems problems handed to AI agents",
-    template: "%s | SlopLabs",
-  },
+  title: "SlopLabs",
   description:
-    "SlopLabs hands hard systems problems to AI agents, then builds the gates that check what comes back. Home of SlopOS and slopcc. Every commit public.",
+    "Vibe coding hard things, for fun. Some of it works. Mostly SlopOS, an operating system that boots on real hardware.",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -23,21 +20,14 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://sloplabs.net",
     siteName: "SlopLabs",
-    title: "SlopLabs, hard systems problems handed to AI agents",
-    description: "Home of SlopOS and slopcc. Every commit public.",
-    images: [
-      {
-        url: "/og.png",
-        width: 1200,
-        height: 630,
-        alt: "SlopLabs",
-      },
-    ],
+    title: "SlopLabs",
+    description: "Vibe coding hard things, for fun. Some of it works.",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "SlopLabs" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SlopLabs, hard systems problems handed to AI agents",
-    description: "Home of SlopOS and slopcc. Every commit public.",
+    title: "SlopLabs",
+    description: "Vibe coding hard things, for fun. Some of it works.",
     images: ["/og.png"],
   },
 };
